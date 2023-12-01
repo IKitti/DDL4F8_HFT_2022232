@@ -17,8 +17,11 @@ namespace DDL4F8_HFT_2022232.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase("PetLife.txt");
-            base.OnConfiguring(optionsBuilder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseInMemoryDatabase("PetLife")
+                .UseLazyLoadingProxies();              
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
