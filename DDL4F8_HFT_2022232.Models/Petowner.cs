@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DDL4F8_HFT_2022232.Models
 {
-    internal class Petowner
+    public class Petowner
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,10 +23,12 @@ namespace DDL4F8_HFT_2022232.Models
 
         public int Age { get; set; }
 
+        public int Money { get; set; }
+
         [NotMapped]
         public virtual ICollection<Pet> Pets { get; set; }
 
         [NotMapped]
-        public virtual ICollection<PetFood> Foods { get; set; }
+        public virtual ICollection<PetFood> FoodsShop { get; set; }
     }
 }

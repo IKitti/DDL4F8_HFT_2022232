@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DDL4F8_HFT_2022232.Models
 {
-    internal class Pet
+    public class Pet
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,8 +26,10 @@ namespace DDL4F8_HFT_2022232.Models
 
         public int Age { get; set; }
 
+        public int PetId { get; set; }
+
         [NotMapped]
-        public Pet pet { get; set; }
+        public Petowner Owner { get; set; }
 
 
     }
