@@ -6,7 +6,7 @@ namespace DDL4F8_HFT_2022232
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           
         }
     }
 }
