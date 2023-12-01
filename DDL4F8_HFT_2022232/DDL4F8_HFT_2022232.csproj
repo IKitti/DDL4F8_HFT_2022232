@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDL4F8_HFT_2022232.Models\DDL4F8_HFT_2022232.Models.csproj" />
+  </ItemGroup>
+
 </Project>
