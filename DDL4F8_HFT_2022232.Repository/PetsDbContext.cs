@@ -2,7 +2,8 @@
 
 namespace DDL4F8_HFT_2022232.Repository
 {
-    public class Class1
+    public class PetsDbContext : DbContext
     {
+        
     }
 }
