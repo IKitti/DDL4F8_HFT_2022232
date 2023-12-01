@@ -25,11 +25,13 @@ namespace DDL4F8_HFT_2022232.Models
         public string Title { get; set; } //Milyen evő?
 
         public int Age { get; set; }
-
-        public int PetId { get; set; }
+        public int PetownerId { get; set; }
+        public int PetFoodId { get; set; }
 
         [NotMapped]
-        public Petowner Owner { get; set; }
+        public Petowner Petowner { get; set; }
+        [NotMapped]
+        public PetFood PetFood { get; set; }
 
 
     }

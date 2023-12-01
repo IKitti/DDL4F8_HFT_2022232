@@ -25,10 +25,10 @@ namespace DDL4F8_HFT_2022232.Models
 
         public int Money { get; set; }
 
-        [NotMapped]
-        public virtual ICollection<Pet> Pets { get; set; }
+        public int OwnerID { get; set; }
 
         [NotMapped]
-        public virtual ICollection<PetFood> FoodsShop { get; set; }
+        public List<Pet> Pets { get; set; }
+    }
     }
 }

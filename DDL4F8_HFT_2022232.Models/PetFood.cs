@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.Buffers;
 
 namespace DDL4F8_HFT_2022232.Models
 {
@@ -25,11 +26,9 @@ namespace DDL4F8_HFT_2022232.Models
         public int PetFoodId { get; set; }
 
         [NotMapped]
-        public virtual ICollection<Petowner> Moneybag { get; set; }
-
+        public List<Pet> Pets { get; set; }
         [NotMapped]
-
-        public Pet LittlePet {  get; set; } 
+        public Petowner FoodShop { get; set; }
 
     }
 }

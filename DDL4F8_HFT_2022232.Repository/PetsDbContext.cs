@@ -7,8 +7,8 @@ namespace DDL4F8_HFT_2022232.Repository
     public class PetsDbContext : DbContext
     {
         public DbSet<Pet> Pets { get; set; }
-        public DbSet<PetFood> PetFood { get; set;}
-        public DbSet<Petowner> PetOwner { get; set; }
+        public DbSet<PetFood> PetFoods { get; set;}
+        public DbSet<Petowner> PetOwners { get; set; }
 
         public PetsDbContext()
         {
@@ -17,24 +17,27 @@ namespace DDL4F8_HFT_2022232.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseInMemoryDatabase("PetLife.txt");
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pet>()
-                .HasOne(t => t.Owner)
-                .WithMany(t => t.Pets)
-                .HasForeignKey(t => t.PetId);
-            // .OnDelete(DeleteBehavior.Cascade));
+            modelBuilder.Entity<Petowner>()
+                       .HasMany(p => p.Pets)
+                       .WithOne(p => p.Petowner)
+                       .HasForeignKey(p => p.PetownerId)
+                       .OnDelete(DeleteBehavior.Cascade);
 
-            //modelBuilder.Entity<PetFood>()
-            //   .HasOne(t => t.)
-            //   .WithMany(t=>t.)
-            //   .HasForeignKey(t => t.PetFoodId);
+            modelBuilder.Entity<PetFood>()
+                .HasMany(pf => pf.Pets)
+                .WithOne(p => p.PetFood)
+                .HasForeignKey(p => p.PetFoodId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
-            var PO = new Petowner[]
+
+            var POs = new Petowner[]
 {
     new Petowner() { Id = 1, Name = "János", Sex = "Male", Age = 34, Money= 2600 },
     new Petowner() { Id = 2, Name = "Katalin", Sex = "Female", Age = 28, Money= 2900 },
@@ -49,7 +52,7 @@ namespace DDL4F8_HFT_2022232.Repository
     new Petowner() { Id = 11, Name = "Gergő", Sex = "Male", Age = 38, Money= 2800 }
 };
 
-            var petFoods = new PetFood[]
+            var PFs = new PetFood[]
             {
     new PetFood() { Id = 1, PetRecommendation = "Cat", CasualFood = "Meat", BestFood = "Fish", BestFoodCost = 200},
     new PetFood() { Id = 2, PetRecommendation = "Dog", CasualFood = "Chicken", BestFood = "Beef", BestFoodCost = 800 },
@@ -64,7 +67,7 @@ namespace DDL4F8_HFT_2022232.Repository
     new PetFood() { Id = 11, PetRecommendation = "Snake", CasualFood = "Mice", BestFood = "Birds", BestFoodCost = 700 }
             };
 
-            var pets = new Pet[]
+            var Ps = new Pet[]
             {
     new Pet() { Id = 1, Name = "Nyunyu", Species = "Rabbit", Title = "Herbivore", Age = 3 },
     new Pet() { Id = 2, Name = "Fluffy", Species = "Cat", Title = "Carnivore", Age = 2 },
@@ -87,6 +90,10 @@ namespace DDL4F8_HFT_2022232.Repository
     new Pet() { Id = 19, Name = "Shadow", Species = "Ferret", Title = "Carnivore", Age = 2 },
     new Pet() { Id = 20, Name = "Speedy", Species = "Turtle", Title = "Herbivore", Age = 5 },
             };
+
+            modelBuilder.Entity<Petowner>().HasData(POs);
+            modelBuilder.Entity<PetFood>().HasData(PFs);
+            modelBuilder.Entity<Pet>().HasData(Ps);
 
             base.OnModelCreating(modelBuilder);
         }
