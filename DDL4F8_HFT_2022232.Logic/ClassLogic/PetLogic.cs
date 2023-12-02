@@ -24,6 +24,18 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
         public Pet Read(int id) { return repo.Read(id); }
 
         public IQueryable<Pet> ReadAll() { return repo.ReadAll(); }
+
+        // NON-CRUD
+
+        public IEnumerable<Pet> OldPet(int age)
+        {
+                return repo.ReadAll().Where(x => x.Age >= age);
+        }
+        public IEnumerable<Pet> YoungPet(int age)
+        {
+            return repo.ReadAll().Where(x => x.Age <= age);
+        }
+
     }
 }
 

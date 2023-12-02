@@ -30,5 +30,8 @@ namespace DDL4F8_HFT_2022232.Models
         [NotMapped]
         public Petowner FoodShop { get; set; }
 
+
+
+
     }
 }

@@ -24,5 +24,18 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
         public PetFood Read(int id) { return repo.Read(id); }
 
         public IQueryable<PetFood> ReadAll() { return repo.ReadAll(); }
+
+        // NON-CRUD
+
+        public IEnumerable<PetFood> minCost (int cost)
+        {
+            return repo.ReadAll().Where(t => t.BestFoodCost >= cost);
+        }
+
+        public IEnumerable<PetFood> maxCost(int cost)
+        {
+            return repo.ReadAll().Where(t => t.BestFoodCost <= cost);
+        }
+
     }
 }
