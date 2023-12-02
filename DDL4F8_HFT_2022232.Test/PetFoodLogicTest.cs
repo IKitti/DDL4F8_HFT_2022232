@@ -34,11 +34,47 @@ namespace DDL4F8_HFT_2022232.Test
             petfoodlogic = new PetFoodLogic(mockPetFoodRepo.Object);
         }
 
+
         [Test]
         public void minCostTest()
         {
+            // Arrange
+            int costThreshold = 250;
+            var expectedPetFoods = new List<PetFood>()
+            {
+                new PetFood() { Id = 1, PetRecommendation = "Spider", CasualFood = "Pellets", BestFood = "Nuts", BestFoodCost = 300 },
+                new PetFood() { Id = 3, PetRecommendation = "Pony", CasualFood = "Vegetables", BestFood = "Hay", BestFoodCost = 300 },
+                new PetFood() { Id = 4, PetRecommendation = "Horse", CasualFood = "Grass", BestFood = "Oats", BestFoodCost = 400 },
+            };
 
+            // Act
+            var result = petfoodlogic.minCost(costThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expectedPetFoods.Count, result.Count());
+            CollectionAssert.AreEquivalent(expectedPetFoods, result);
         }
+
+        [Test]
+        public void maxCostTest()
+        {
+            // Arrange
+            int costThreshold = 250;
+            var expectedPetFoods = new List<PetFood>()
+        {
+            new PetFood() { Id = 2, PetRecommendation = "Mouse", CasualFood = "Insects", BestFood = "Fruits", BestFoodCost = 200 },
+        };
+
+            // Act
+            var result = petfoodlogic.maxCost(costThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expectedPetFoods.Count, result.Count());
+            CollectionAssert.AreEquivalent(expectedPetFoods, result);
+        }
+
 
     }
 

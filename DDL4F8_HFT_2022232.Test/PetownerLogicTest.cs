@@ -31,10 +31,37 @@ namespace DDL4F8_HFT_2022232.Test
                 new Petowner() { Id = 5, Name = "Péter", Sex = "Male", Age = 26, Money = 2600 },
 
 
-            }.AsQueryable());
+            }.AsQueryable());          
+        }
 
-            petownerlogic = new PetownerLogic(mockPetownerRepo.Object);
 
+
+        [Test]
+        public void RichOwnerTest()
+        {
+            // Arrange
+            int moneyThreshold = 2700;
+
+            // Act
+            var result = petownerlogic.RichOwner(moneyThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.All(owner => owner.Money >= moneyThreshold));
+        }
+
+        [Test]
+        public void PoorOwnerTest()
+        {
+            // Arrange
+            int moneyThreshold = 2700;
+
+            // Act
+            var result = petownerlogic.PoorhOwner(moneyThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.All(owner => owner.Money <= moneyThreshold));
         }
     }
 }

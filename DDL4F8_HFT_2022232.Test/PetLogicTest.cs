@@ -35,5 +35,33 @@ namespace DDL4F8_HFT_2022232.Test
 
             petlogic = new PetLogic(mockPetRepo.Object);
         }
+
+        [Test]
+        public void OldPetTest()
+        {
+            // Arrange
+            int ageThreshold = 3;
+
+            // Act
+            var result = petlogic.OldPet(ageThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.All(pet => pet.Age >= ageThreshold));
+        }
+
+        [Test]
+        public void YoungPetTest()
+        {
+            // Arrangeas
+            int ageThreshold = 3;
+
+            // Act
+            var result = petlogic.YoungPet(ageThreshold);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.All(pet => pet.Age <= ageThreshold));
+        }
     }
 }
