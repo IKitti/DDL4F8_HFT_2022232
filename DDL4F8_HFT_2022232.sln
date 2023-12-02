@@ -22,6 +22,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDL4F8_HFT_2022232.Models", "DDL4F8_HFT_2022232.Models\DDL4F8_HFT_2022232.Models.csproj", "{8CF146DC-70E0-463E-A0F5-9797997E7625}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{848FFC09-69CF-4FCA-A717-A82DC80CC9AE}"
+	ProjectSection(SolutionItems) = preProject
+		E:\ÓE\7.félév\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore = E:\ÓE\7.félév\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
