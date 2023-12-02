@@ -8,5 +8,25 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
 {
     public class PetLogic
     {
+        public void Create()
+        {
+
+        }
+
+        public void Read()
+        {
+
+        }
+
+        public void ReadAll()
+        {
+
+        }
+
+        public void Delete()
+        {
+
+        }
+
     }
 }
