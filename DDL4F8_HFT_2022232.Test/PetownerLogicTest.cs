@@ -31,7 +31,8 @@ namespace DDL4F8_HFT_2022232.Test
                 new Petowner() { Id = 5, Name = "Péter", Sex = "Male", Age = 26, Money = 2600 },
 
 
-            }.AsQueryable());          
+            }.AsQueryable());
+            petownerlogic = new PetownerLogic(mockPetownerRepo.Object);
         }
 
 

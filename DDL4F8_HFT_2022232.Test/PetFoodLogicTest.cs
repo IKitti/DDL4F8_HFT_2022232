@@ -48,12 +48,15 @@ namespace DDL4F8_HFT_2022232.Test
             };
 
             // Act
-            var result = petfoodlogic.minCost(costThreshold);
+            var result = petfoodlogic.minCost(costThreshold).ToList();
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(expectedPetFoods.Count, result.Count());
-            CollectionAssert.AreEquivalent(expectedPetFoods, result);
+            for (int i = 0; i < result.Count; i++)
+            {
+                Assert.AreEqual(expectedPetFoods[i].Id, result[i].Id);
+            }
         }
 
         [Test]
@@ -67,12 +70,16 @@ namespace DDL4F8_HFT_2022232.Test
         };
 
             // Act
-            var result = petfoodlogic.maxCost(costThreshold);
+            var result = petfoodlogic.maxCost(costThreshold).ToList();
 
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(expectedPetFoods.Count, result.Count());
-            CollectionAssert.AreEquivalent(expectedPetFoods, result);
+            for (int i = 0; i < result.Count; i++)
+            {
+                Assert.AreEqual(expectedPetFoods[i].Id, result[i].Id);
+            }
+
         }
 
 

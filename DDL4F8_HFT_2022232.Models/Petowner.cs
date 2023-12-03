@@ -30,5 +30,5 @@ namespace DDL4F8_HFT_2022232.Models
         [NotMapped]
         public List<Pet> Pets { get; set; }
     }
-    }
 }
+
