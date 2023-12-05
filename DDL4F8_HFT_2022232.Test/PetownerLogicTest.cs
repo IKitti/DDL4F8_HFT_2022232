@@ -69,7 +69,20 @@ namespace DDL4F8_HFT_2022232.Test
             Assert.IsTrue(result.All(owner => owner.Money <= moneyThreshold));
         }
 
+        [Test]
+        public void deleteTest()
+        {
+            // Arrange
+            int id = 1;
 
+            // Act
+            humanlogic.Delete(id);
+            var valami = humanlogic.Read(id);
+
+            // Assert
+            mockPetownerRepo.Verify(t => t.Delete(id), Times.Once);
+            Assert.IsNull(valami);
+        }
 
     }
 }
