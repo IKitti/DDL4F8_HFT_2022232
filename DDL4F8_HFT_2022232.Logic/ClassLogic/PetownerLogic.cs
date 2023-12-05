@@ -15,7 +15,12 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
         public PetownerLogic(IRepository<Petowner> repo) { this.repo = repo; }
 
         // CRUD 
-        public void Create(Petowner item) { repo.Create(item); }
+        public void Create(Petowner item)
+        {
+            if (item == null) { throw new ArgumentNullException("Not correct"); }
+
+            repo.Create(item);
+        }
 
         public void Delete(int id) { repo.Delete(id); }
 

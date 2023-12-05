@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces
 {
-    internal interface IPetLogic
+    public interface IPetLogic
     {
         void Create(Pet item);
         void Delete(int id);

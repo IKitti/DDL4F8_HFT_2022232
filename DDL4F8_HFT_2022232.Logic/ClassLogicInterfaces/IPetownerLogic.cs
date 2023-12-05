@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces
 {
-    internal interface IPetownerLogic
+    public interface IPetownerLogic
     {
         void Create(Petowner item);
         void Delete(int id);

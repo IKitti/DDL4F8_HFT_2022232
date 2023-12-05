@@ -15,7 +15,12 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
         public PetLogic(IRepository<Pet> repo) { this.repo = repo; }
 
         // CRUD 
-        public void Create(Pet item) { repo.Create(item); }
+        public void Create(Pet item)
+        {
+            if (item == null) { throw new ArgumentNullException("Not correct"); }
+
+            repo.Create(item);
+        }
 
         public void Delete(int id) { repo.Delete(id); }
 

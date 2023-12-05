@@ -25,10 +25,8 @@ namespace DDL4F8_HFT_2022232.Models
 
         public int PetFoodId { get; set; }
 
-        [NotMapped]
-        public List<Pet> Pets { get; set; }
-        [NotMapped]
-        public Petowner FoodShop { get; set; }
+        public virtual List<Pet> Pets { get; set; }
+        public virtual Petowner FoodShop { get; set; }
 
 
 
