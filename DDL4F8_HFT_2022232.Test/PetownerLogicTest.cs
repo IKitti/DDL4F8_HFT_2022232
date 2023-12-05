@@ -99,5 +99,11 @@ namespace DDL4F8_HFT_2022232.Test
             Assert.AreEqual(petowner, valami);
         }
 
+        [Test]
+        public void createTestNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => humanlogic.Create(null));
+        }
+
     }
 }
