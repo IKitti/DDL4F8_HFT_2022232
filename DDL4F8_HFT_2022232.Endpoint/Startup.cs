@@ -1,3 +1,8 @@
+using DDL4F8_HFT_2022232.Logic.ClassLogic;
+using DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces;
+using DDL4F8_HFT_2022232.Models;
+using DDL4F8_HFT_2022232.Repository.ClassRepo;
+using DDL4F8_HFT_2022232.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +21,17 @@ namespace DDL4F8_HFT_2022232.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<PetsDbContext>();
+
+            services.AddTransient<IRepository<PetFood>, PetFoodRepository>();
+            services.AddTransient<IRepository<Petowner>, PetownerRepository>();
+            services.AddTransient<IRepository<Pet>, PetRepository>();
+
+            services.AddTransient<IPetFoodLogic, PetFoodLogic>();
+            services.AddTransient<IPetLogic, PetLogic>();
+            services.AddTransient<IPetownerLogic, PetownerLogic>();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,14 +43,7 @@ namespace DDL4F8_HFT_2022232.Endpoint
             }
 
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+            app.UseEndpoints(e => e.MapControllers());
         }
     }
 }
