@@ -22,7 +22,12 @@ namespace DDL4F8_HFT_2022232.Logic.ClassLogic
             repo.Create(item);
         }
 
-        public void Delete(int id) { repo.Delete(id); }
+        public void Delete(int id)
+        {
+            var p = repo.Read(id);
+            if (p is null) throw new ArgumentException("This is not exist!");
+            repo.Delete(id);
+        }
 
         public void Update(Pet item) { repo.Update(item); }
 
