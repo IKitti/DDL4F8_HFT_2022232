@@ -84,5 +84,20 @@ namespace DDL4F8_HFT_2022232.Test
             Assert.IsNull(valami);
         }
 
+        [Test]
+        public void createTest()
+        {
+            // Arrange
+            Petowner petowner = new Petowner() { Id = 6, Name = "Anna", Sex = "Male", Age = 69, Money = 42000 };
+
+            // Act
+            humanlogic.Create(petowner);
+            var valami = humanlogic.Read(petowner.Id);
+
+            // Assert
+            mockPetownerRepo.Verify(t => t.Create(petowner), Times.Once);
+            Assert.AreEqual(petowner, valami);
+        }
+
     }
 }
