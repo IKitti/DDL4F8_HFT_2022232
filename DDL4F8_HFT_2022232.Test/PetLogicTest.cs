@@ -63,5 +63,20 @@ namespace DDL4F8_HFT_2022232.Test
             Assert.IsNotNull(result);
             Assert.IsTrue(result.All(pet => pet.Age <= ageThreshold));
         }
+
+
+        [Test]
+        public void createTest()
+        {
+            // Arrange
+            Pet pet = new Pet() { Id = 7, Name = "Bunny", Species = "Rabbit", Title = "Herbivore", Age = 2 };
+
+            // Act
+            petlogic.Create(pet);
+
+            // Assert
+            mockPetRepo.Verify(t => t.Create(pet), Times.Once);
+        }
+
     }
 }
