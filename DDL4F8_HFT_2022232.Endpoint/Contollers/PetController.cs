@@ -1,6 +1,9 @@
-﻿using DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces;
+﻿using DDL4F8_HFT_2022232.Logic.ClassLogic;
+using DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces;
 using DDL4F8_HFT_2022232.Models;
+using DDL4F8_HFT_2022232.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DDL4F8_HFT_2022232.Endpoint.Contollers

@@ -20,7 +20,8 @@ namespace DDL4F8_HFT_2022232.Endpoint
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls("http://*:5000");
                 });
     }
 }
