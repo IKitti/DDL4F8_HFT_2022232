@@ -82,20 +82,19 @@ namespace DDL4F8_HFT_2022232.Test
 
         }
 
-
         [Test]
-        public void CreateTest()
+        public void createTest()
         {
             // Arrange
-           PetFood petfood= new PetFood() { Id = 2, PetRecommendation = "Mouse", CasualFood = "Insects", BestFood = "Fruits", BestFoodCost = 200 },
+            PetFood petfood = new PetFood() { Id = 5, PetRecommendation = "Dog", CasualFood = "Chicken", BestFood = "Beef", BestFoodCost = 800 };
 
             // Act
             petfoodlogic.Create(petfood);
 
             // Assert
-            Assert.AreEqual(result)
-
+            mockPetFoodRepo.Verify(t => t.Create(petfood), Times.Once);
         }
+
 
 
     }
