@@ -95,7 +95,18 @@ namespace DDL4F8_HFT_2022232.Test
             mockPetFoodRepo.Verify(t => t.Create(petfood), Times.Once);
         }
 
+        [Test]
+        public void deleteTest()
+        {
+            // Arrange
+            int id = 1;
 
+            // Act
+            petfoodlogic.Delete(id);
+
+            // Assert
+            mockPetFoodRepo.Verify(t => t.Delete(id), Times.Once);
+        }
 
     }
 
