@@ -23,8 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDL4F8_HFT_2022232.Models",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{848FFC09-69CF-4FCA-A717-A82DC80CC9AE}"
 	ProjectSection(SolutionItems) = preProject
-		E:\ÓE\7.félév\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore = E:\ÓE\7.félév\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore
+		..\..\..\..\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore = ..\..\..\..\OZF5UK_HFT_2022231\OZF5UK_HFT_2022231\.gitignore
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetDbApp.MVC", "PetDbApp.MVC\PetDbApp.MVC.csproj", "{20867B92-A8B5-49E4-9622-D40EA779C6D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{8CF146DC-70E0-463E-A0F5-9797997E7625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CF146DC-70E0-463E-A0F5-9797997E7625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CF146DC-70E0-463E-A0F5-9797997E7625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20867B92-A8B5-49E4-9622-D40EA779C6D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20867B92-A8B5-49E4-9622-D40EA779C6D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20867B92-A8B5-49E4-9622-D40EA779C6D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20867B92-A8B5-49E4-9622-D40EA779C6D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

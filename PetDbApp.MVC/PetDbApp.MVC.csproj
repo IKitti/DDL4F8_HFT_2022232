@@ -2,19 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DDL4F8_HFT_2022232.Logic\DDL4F8_HFT_2022232.Logic.csproj" />
     <ProjectReference Include="..\DDL4F8_HFT_2022232.Models\DDL4F8_HFT_2022232.Models.csproj" />
     <ProjectReference Include="..\DDL4F8_HFT_2022232.Repository\DDL4F8_HFT_2022232.Repository.csproj" />
-  </ItemGroup>	
+  </ItemGroup>
 
 </Project>
