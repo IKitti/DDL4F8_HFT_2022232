@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Buffers;
+using System.Text.Json.Serialization;
 
 namespace DDL4F8_HFT_2022232.Models
 {
@@ -25,7 +26,9 @@ namespace DDL4F8_HFT_2022232.Models
 
         public int PetFoodId { get; set; }
 
+        [JsonIgnore]
         public virtual List<Pet> Pets { get; set; }
+        [JsonIgnore]
         public virtual Petowner FoodShop { get; set; }
 
 

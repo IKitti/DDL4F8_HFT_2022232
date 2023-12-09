@@ -6,6 +6,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,18 +19,23 @@ namespace DDL4F8_HFT_2022232.Test
         PetFoodLogic petfoodlogic;
         Mock<IRepository<PetFood>> mockPetFoodRepo;
 
+        List<PetFood> petfood;
+
         [SetUp]
 
         public void Init()
         {
+            petfood = new List<PetFood>();
+            petfood.Add(new PetFood() { Id = 1, PetRecommendation = "Spider", CasualFood = "Pellets", BestFood = "Nuts", BestFoodCost = 300 });
+            petfood.Add(new PetFood() { Id = 2, PetRecommendation = "Mouse", CasualFood = "Insects", BestFood = "Fruits", BestFoodCost = 200 });
+            petfood.Add(new PetFood() { Id = 3, PetRecommendation = "Pony", CasualFood = "Vegetables", BestFood = "Hay", BestFoodCost = 300 });
+            petfood.Add(new PetFood() { Id = 4, PetRecommendation = "Horse", CasualFood = "Grass", BestFood = "Oats", BestFoodCost = 400 });
+
             mockPetFoodRepo = new Mock<IRepository<PetFood>>();
-            mockPetFoodRepo.Setup(t => t.ReadAll()).Returns(new List<PetFood>()
-            {
-                new PetFood() { Id = 1, PetRecommendation = "Spider", CasualFood = "Pellets", BestFood = "Nuts", BestFoodCost = 300 },
-                new PetFood() { Id = 2, PetRecommendation = "Mouse", CasualFood = "Insects", BestFood = "Fruits", BestFoodCost = 200 },
-                new PetFood() { Id = 3, PetRecommendation = "Pony", CasualFood = "Vegetables", BestFood = "Hay", BestFoodCost = 300 },
-                new PetFood() { Id = 4, PetRecommendation = "Horse", CasualFood = "Grass", BestFood = "Oats", BestFoodCost = 400 },
-            }.AsQueryable());
+            mockPetFoodRepo.Setup(t => t.ReadAll()).Returns(petfood.AsQueryable());
+            mockPetFoodRepo.Setup(t => t.Create(It.IsAny<PetFood>())).Callback((PetFood e) => petfood.Add(e)).Verifiable();
+            mockPetFoodRepo.Setup(t => t.Read(It.IsAny<int>())).Returns((int i) => petfood.Where(x => x.Id == i).SingleOrDefault());
+            mockPetFoodRepo.Setup(t => t.Delete(It.IsAny<int>())).Callback((int i) => petfood.Remove(petfood.Where(x => x.Id == i).Single()));
 
             petfoodlogic = new PetFoodLogic(mockPetFoodRepo.Object);
         }

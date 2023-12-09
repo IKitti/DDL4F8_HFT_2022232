@@ -17,21 +17,25 @@ namespace DDL4F8_HFT_2022232.Test
         PetLogic petlogic;
         Mock<IRepository<Pet>> mockPetRepo;
 
+        List<Pet> pet;
+
         [SetUp]
 
         public void Init()
         {
-            mockPetRepo = new Mock<IRepository<Pet>>();
-            mockPetRepo.Setup(t => t.ReadAll()).Returns(new List<Pet>()
-            {
-                new Pet() { Id = 1, Name = "Hoppy", Species = "Rabbit", Title = "Herbivore", Age = 2 },
-                new Pet() { Id = 2, Name = "Shadow", Species = "Cat", Title = "Carnivore", Age = 4 },
-                new Pet() { Id = 3, Name = "Max", Species = "Dog", Title = "Omnivore", Age = 3 },
-                new Pet() { Id = 4, Name = "Tweeter", Species = "Bird", Title = "Omnivore", Age = 2 },
-                new Pet() { Id = 5, Name = "Silver", Species = "Fish", Title = "Herbivore", Age = 3 },
-                new Pet() { Id = 6, Name = "Nibbles", Species = "Hamster", Title = "Omnivore", Age = 2 },
+            pet = new List<Pet>();
+            pet.Add(new Pet() { Id = 1, Name = "Hoppy", Species = "Rabbit", Title = "Herbivore", Age = 2 });
+            pet.Add(new Pet() { Id = 2, Name = "Shadow", Species = "Cat", Title = "Carnivore", Age = 4 });
+            pet.Add(new Pet() { Id = 3, Name = "Max", Species = "Dog", Title = "Omnivore", Age = 3 });
+            pet.Add(new Pet() { Id = 4, Name = "Tweeter", Species = "Bird", Title = "Omnivore", Age = 2 });
+            pet.Add(new Pet() { Id = 5, Name = "Silver", Species = "Fish", Title = "Herbivore", Age = 3 });
+            pet.Add(new Pet() { Id = 6, Name = "Nibbles", Species = "Hamster", Title = "Omnivore", Age = 2 });
 
-            }.AsQueryable());
+            mockPetRepo = new Mock<IRepository<Pet>>();
+            mockPetRepo.Setup(t => t.ReadAll()).Returns(pet.AsQueryable());
+            mockPetRepo.Setup(t => t.Create(It.IsAny<Pet>())).Callback((Pet e) => pet.Add(e)).Verifiable();
+            mockPetRepo.Setup(t => t.Read(It.IsAny<int>())).Returns((int i) => pet.Where(x => x.Id == i).SingleOrDefault());
+            mockPetRepo.Setup(t => t.Delete(It.IsAny<int>())).Callback((int i) => pet.Remove(pet.Where(x => x.Id == i).Single()));
 
             petlogic = new PetLogic(mockPetRepo.Object);
         }

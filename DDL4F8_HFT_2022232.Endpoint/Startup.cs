@@ -13,6 +13,7 @@ using DDL4F8_HFT_2022232.Repository.ClassRepo;
 using DDL4F8_HFT_2022232.Logic.ClassLogic;
 using DDL4F8_HFT_2022232.Repository;
 using DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces;
+using System.Text.Json.Serialization;
 
 namespace DDL4F8_HFT_2022232.Endpoint
 {
