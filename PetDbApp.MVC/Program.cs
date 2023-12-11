@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DDL4F8_HFT_2022232.Endpoint
+namespace PetDbApp.MVC
 {
     public class Program
     {

@@ -14,6 +14,7 @@ using DDL4F8_HFT_2022232.Logic.ClassLogic;
 using DDL4F8_HFT_2022232.Repository;
 using DDL4F8_HFT_2022232.Logic.ClassLogicInterfaces;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 namespace DDL4F8_HFT_2022232.Endpoint
 {
@@ -34,6 +35,11 @@ namespace DDL4F8_HFT_2022232.Endpoint
             services.AddTransient<IPetownerLogic, PetownerLogic>();
 
             services.AddControllers();
+
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "DDL4F8_HFT", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +48,8 @@ namespace DDL4F8_HFT_2022232.Endpoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "DDL4F8_HFT"));
             }
 
             app.UseRouting();

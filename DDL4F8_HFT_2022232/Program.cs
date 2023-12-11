@@ -1,10 +1,15 @@
 ﻿using DDL4F8_HFT_2022232.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Channels;
+using System.Xml;
 
 namespace DDL4F8_HFT_2022232
 {
@@ -79,7 +84,7 @@ namespace DDL4F8_HFT_2022232
 
         private static void PetEndpointReadAll()
         {
-            string url = "http://localhost:5000/api/pet";
+            string url = "http://localhost:52326/api/pet";
 
             using (HttpClient client = new HttpClient())
             {
@@ -88,6 +93,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -98,7 +104,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/pet/" + id;
+            string url = "http://localhost:52326/api/pet/" + id;
             using (HttpClient client = new HttpClient())
             {
                 using (HttpResponseMessage response = client.GetAsync(url).Result)
@@ -106,6 +112,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -126,7 +133,7 @@ namespace DDL4F8_HFT_2022232
             int petownerId = int.Parse(Console.ReadLine());
             Console.WriteLine("Specify the petfood id: ");
             int petfoodId = int.Parse(Console.ReadLine());
-            string url = "http://localhost:5000/api/pet";
+            string url = "http://localhost:52326/api/pet";
 
             using (HttpClient client = new HttpClient())
             {
@@ -145,7 +152,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("Pet created!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -170,7 +176,7 @@ namespace DDL4F8_HFT_2022232
             int petownerId = int.Parse(Console.ReadLine());
             Console.WriteLine("Specify the petfood id: ");
             int petfoodId = int.Parse(Console.ReadLine());
-            string url = "http://localhost:5000/api/pet/" + id;
+            string url = "http://localhost:52326/api/pet/" + id;
 
             using (HttpClient client = new HttpClient())
             {
@@ -190,7 +196,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("Pet updated!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -203,7 +208,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/pet/" + id;
+            string url = "http://localhost:52326/api/pet/" + id;
             using (HttpClient client = new HttpClient())
             {
                 var response = client.DeleteAsync(url).Result;
@@ -211,7 +216,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("Pet deleted!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -258,7 +262,7 @@ namespace DDL4F8_HFT_2022232
 
         private static void PetFoodEndpointReadAll()
         {
-            string url = "http://localhost:5000/api/food";
+            string url = "http://localhost:52326/api/food";
 
             using (HttpClient client = new HttpClient())
             {
@@ -267,6 +271,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -277,7 +282,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/food/" + id;
+            string url = "http://localhost:52326/api/food/" + id;
             using (HttpClient client = new HttpClient())
             {
                 using (HttpResponseMessage response = client.GetAsync(url).Result)
@@ -285,6 +290,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -303,7 +309,7 @@ namespace DDL4F8_HFT_2022232
             int bestfoodcost = int.Parse(Console.ReadLine());
             Console.WriteLine("specify the pet food id: ");
             int petfoodid = int.Parse(Console.ReadLine());
-            string url = "http://localhost:5000/api/food";
+            string url = "http://localhost:52326/api/food";
 
             using (HttpClient client = new HttpClient())
             {
@@ -321,7 +327,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetFood created!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -344,7 +349,7 @@ namespace DDL4F8_HFT_2022232
             int bestfoodcost = int.Parse(Console.ReadLine());
             Console.WriteLine("specify the pet food id: ");
             int petfoodid = int.Parse(Console.ReadLine());
-            string url = "http://localhost:5000/api/food/" + id;
+            string url = "http://localhost:52326/api/food/" + id;
 
             using (HttpClient client = new HttpClient())
             {
@@ -363,7 +368,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetFood updated!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -376,7 +380,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/food/" + id;
+            string url = "http://localhost:52326/api/food/" + id;
             using (HttpClient client = new HttpClient())
             {
                 var response = client.DeleteAsync(url).Result;
@@ -384,7 +388,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetFood deleted!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -431,7 +434,7 @@ namespace DDL4F8_HFT_2022232
 
         private static void PetOwnerEndpointReadAll()
         {
-            string url = "http://localhost:5000/api/petowner";
+            string url = "http://localhost:52326/api/petowner";
 
             using (HttpClient client = new HttpClient())
             {
@@ -440,6 +443,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -450,7 +454,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/petowner/" + id;
+            string url = "http://localhost:52326/api/petowner/" + id;
             using (HttpClient client = new HttpClient())
             {
                 using (HttpResponseMessage response = client.GetAsync(url).Result)
@@ -458,6 +462,7 @@ namespace DDL4F8_HFT_2022232
                     using (HttpContent content = response.Content)
                     {
                         string myContent = content.ReadAsStringAsync().Result;
+                        myContent = FormatJSON(myContent);
                         Console.WriteLine(myContent);
                     }
                 }
@@ -477,7 +482,7 @@ namespace DDL4F8_HFT_2022232
             Console.WriteLine("Specify the pet owner id: ");
             int petownerid = int.Parse(Console.ReadLine());
 
-            string url = "http://localhost:5000/api/petowner";
+            string url = "http://localhost:52326/api/petowner";
             using (HttpClient client = new HttpClient())
             {
                 var petowner = new Petowner
@@ -494,7 +499,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetOwner created!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -519,7 +523,7 @@ namespace DDL4F8_HFT_2022232
             Console.WriteLine("Specify the pet owner id: ");
             int petownerid = int.Parse(Console.ReadLine());
 
-            string url = "http://localhost:5000/api/petowner/" + id;
+            string url = "http://localhost:52326/api/petowner/" + id;
             using (HttpClient client = new HttpClient())
             {
                 var petowner = new Petowner
@@ -536,7 +540,6 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetOwner updated!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
@@ -549,7 +552,7 @@ namespace DDL4F8_HFT_2022232
         {
             Console.WriteLine("Specify the id: ");
             string id = Console.ReadLine();
-            string url = "http://localhost:5000/api/petowner/" + id;
+            string url = "http://localhost:52326/api/petowner/" + id;
             using (HttpClient client = new HttpClient())
             {
                 var response = client.DeleteAsync(url).Result;
@@ -557,13 +560,18 @@ namespace DDL4F8_HFT_2022232
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("PetOwner deleted!");
-                    Console.WriteLine(response.Content);
                 }
                 else
                 {
                     Console.WriteLine("Error!");
                 }
             }
+        }
+
+        private static string FormatJSON(string json)
+        {
+            dynamic parsedJson = JsonConvert.DeserializeObject(json);
+            return JsonConvert.SerializeObject(parsedJson, Newtonsoft.Json.Formatting.Indented);
         }
     }
 }
